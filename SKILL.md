@@ -1,6 +1,11 @@
 ---
 name: plantuml-skill
 description: Use when user requests diagrams, flowcharts, sequence diagrams, class diagrams, component diagrams, ER diagrams, architecture charts, or visualizations. Also use proactively when explaining systems with 3+ components, APIs, data flows, or class hierarchies. Generates .puml files and exports to PNG/SVG via Kroki API (no local install required).
+license: MIT
+homepage: https://github.com/Agents365-ai/plantuml-skill
+compatibility: Requires curl on PATH (pre-installed on macOS/Linux/Windows Git Bash). Default renderer is the public Kroki API at https://kroki.io; can also point to a local Kroki Docker instance, or fall back to a local PlantUML jar + Java + Graphviz.
+platforms: [macos, linux, windows]
+metadata: {"openclaw":{"requires":{"bins":["curl"]},"emoji":"🧩","os":["darwin","linux","win32"]},"hermes":{"tags":["plantuml","diagram","flowchart","sequence","class","uml","architecture","kroki"],"category":"design","requires_tools":["curl"],"related_skills":["drawio","mermaid","excalidraw","tldraw"]},"author":"Agents365-ai","version":"1.1.0"}
 ---
 
 # PlantUML Diagram Skill
