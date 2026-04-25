@@ -194,7 +194,9 @@ skills install plantuml-skill
 
 ## Updates
 
-To pull the latest version:
+The skill auto-checks for updates once per 24 hours on first use in a conversation. The check runs `git pull --ff-only` against the install directory and writes a `.last_update` timestamp; if the pull fails (offline, conflict, not a git checkout), the error is swallowed and the workflow continues normally — no user-visible noise.
+
+To pull manually:
 
 ```bash
 cd <your-install-path>/plantuml-skill && git pull
@@ -233,6 +235,7 @@ The agent will generate the `.puml` file and export it to PNG via Kroki automati
 
 - `SKILL.md` — **the only required file**. Loaded by all platforms as the skill instructions.
 - `agents/openai.yaml` — OpenAI Codex-specific configuration (display name, policy, capabilities, prerequisites)
+- Auto-update is inline in `SKILL.md` (step 0): a 24h-throttled `git pull --ff-only` on first use per conversation, recorded in `.last_update`
 - `README.md` — this file (English, displayed on GitHub homepage)
 - `README_CN.md` — Chinese documentation
 - `assets/` — example `.puml` source and rendered PNG

@@ -194,7 +194,9 @@ skills install plantuml-skill
 
 ## 更新
 
-拉取最新版本：
+Skill 会在每次会话首次使用时自动检查更新（24 小时节流）。它会对安装目录执行 `git pull --ff-only` 并写入 `.last_update` 时间戳；如果 pull 失败（离线、冲突、非 git 安装等），错误会被静默忽略，工作流照常继续 —— 不会向用户输出任何噪音。
+
+手动拉取最新版本：
 
 ```bash
 cd <你的安装路径>/plantuml-skill && git pull
@@ -232,6 +234,7 @@ skills update plantuml-skill
 
 - `SKILL.md` — **唯一必需的文件**，所有平台加载的 skill 指令
 - `agents/openai.yaml` — OpenAI Codex 专用配置（显示名、策略、能力、前置依赖）
+- 自动更新已内联在 `SKILL.md`（步骤 0）：每次会话首次使用时执行 24 小时节流的 `git pull --ff-only`，时间戳写入 `.last_update`
 - `README.md` — 英文说明（GitHub 首页显示）
 - `README_CN.md` — 本文件（中文）
 - `assets/` — 示例 `.puml` 源文件与渲染 PNG
