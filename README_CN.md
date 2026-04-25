@@ -231,11 +231,12 @@ skills update plantuml-skill
 ## 文件说明
 
 - `SKILL.md` — **唯一必需的文件**，所有平台加载的 skill 指令
+- `agents/openai.yaml` — OpenAI Codex 专用配置（显示名、策略、能力、前置依赖）
 - `README.md` — 英文说明（GitHub 首页显示）
 - `README_CN.md` — 本文件（中文）
 - `assets/` — 示例 `.puml` 源文件与渲染 PNG
 
-> **提示：** 仅 `SKILL.md` 是 skill 运行所必需的。`assets/` 和 README 文件仅为文档用途，可以安全删除以节省空间。
+> **提示：** 仅 `SKILL.md` 是 skill 运行所必需的。`agents/openai.yaml` 仅 Codex 需要。`assets/` 和 README 文件仅为文档用途，可以安全删除以节省空间。
 
 ## 已知限制
 

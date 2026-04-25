@@ -232,11 +232,12 @@ The agent will generate the `.puml` file and export it to PNG via Kroki automati
 ## Files
 
 - `SKILL.md` — **the only required file**. Loaded by all platforms as the skill instructions.
+- `agents/openai.yaml` — OpenAI Codex-specific configuration (display name, policy, capabilities, prerequisites)
 - `README.md` — this file (English, displayed on GitHub homepage)
 - `README_CN.md` — Chinese documentation
 - `assets/` — example `.puml` source and rendered PNG
 
-> **Note:** Only `SKILL.md` is needed for the skill to work. The `assets/` and README files are documentation only and can be safely deleted to save space.
+> **Note:** Only `SKILL.md` is needed for the skill to work. `agents/openai.yaml` is only needed for Codex. The `assets/` and README files are documentation only and can be safely deleted to save space.
 
 ## Known Limitations
 

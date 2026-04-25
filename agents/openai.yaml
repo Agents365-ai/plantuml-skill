@@ -1,0 +1,19 @@
+interface:
+  display_name: "PlantUML Diagrams"
+  short_description: "Generate PlantUML diagrams from natural language and export to PNG/SVG via the Kroki API — no Java or local install required"
+  brand_color: "#FBBD16"
+
+policy:
+  allow_implicit_invocation: true
+
+capabilities:
+  - Generate .puml PlantUML source from natural language descriptions
+  - Export to PNG and SVG via the Kroki rendering API (https://kroki.io)
+  - 10+ diagram types (sequence, component, class, ER, activity, use case, state, C4, mind map, gantt)
+  - Themed output via !theme directives or custom skinparam blocks
+  - C4 diagrams via Kroki's c4plantuml endpoint (no broken !include resolution)
+  - Offline mode via local Kroki Docker container or local plantuml.jar fallback
+
+prerequisites:
+  - curl on PATH (pre-installed on macOS/Linux/Windows Git Bash/WSL)
+  - Optional: Docker (for offline local Kroki) or Java + Graphviz + plantuml.jar (for air-gapped use)
