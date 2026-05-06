@@ -12,19 +12,6 @@
 - **C4 图支持**：通过 Kroki 的 `c4plantuml` 端点（已内联解析 PlantUML 公服的 `!include` 指令）
 - 当解释 API、类层次、状态机或 3+ 组件的系统时自动触发画图
 
-## 多平台支持
-
-兼容所有主流支持 [Agent Skills](https://agentskills.io) 格式的 AI 编码智能体：
-
-| 平台 | 支持状态 | 说明 |
-|------|----------|------|
-| **Claude Code** | ✅ 完全支持 | 原生 SKILL.md 格式 |
-| **Opencode** | ✅ 完全支持 | 通过原生 `skill` 工具加载 SKILL.md，同时兼容 `.claude/skills/` 路径 |
-| **OpenClaw / ClawHub** | ✅ 完全支持 | `metadata.openclaw` 命名空间 + `curl` 依赖检测 |
-| **Hermes Agent** | ✅ 完全支持 | `metadata.hermes` 命名空间，标签分类，工具门控 |
-| **OpenAI Codex** | ✅ 完全支持 | 标准 SKILL.md 直接读取 |
-| **SkillsMP** | ✅ 可索引 | GitHub topics 已配置 |
-
 ## 对比
 
 ### 与无 skill 的原生智能体对比
@@ -114,83 +101,24 @@ java -jar plantuml.jar diagram.puml
 | **Windows** | 用 Git Bash 或 WSL 以获得 `curl`；方式 C 需自行安装 Java 与 Graphviz |
 | **Linux** | 大多发行版自带 `curl`；用 `apt` / `yum` / `pacman` 安装 `graphviz` 与 `default-jre` |
 
-## Skill 安装
-
-### Claude Code
+## 安装
 
 ```bash
-# 全局安装（所有项目可用）
+# 任意 Agent（Claude Code、Cursor、Copilot 等）
+npx skills add Agents365-ai/365-skills -g
+
+# 仅 Claude Code
+> /plugin marketplace add Agents365-ai/365-skills
+> /plugin install plantuml
+```
+
+手动安装 —— 克隆到你的 Agent skills 目录：
+
+```bash
 git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.claude/skills/plantuml-skill
-
-# 项目级安装
-git clone https://github.com/Agents365-ai/plantuml-skill.git .claude/skills/plantuml-skill
 ```
 
-### Opencode
-
-```bash
-# 全局安装（Opencode 原生路径）
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.config/opencode/skills/plantuml-skill
-
-# 项目级安装
-git clone https://github.com/Agents365-ai/plantuml-skill.git .opencode/skills/plantuml-skill
-```
-
-Opencode 同时会读取 `~/.claude/skills/` 和 `.claude/skills/`，所以已有的 Claude Code 安装会被自动识别，无需重复 clone。
-
-### OpenClaw
-
-```bash
-# 手动安装
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.openclaw/skills/plantuml-skill
-
-# 项目级安装
-git clone https://github.com/Agents365-ai/plantuml-skill.git skills/plantuml-skill
-```
-
-### Hermes Agent
-
-```bash
-# 安装到 design 分类
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.hermes/skills/design/plantuml-skill
-```
-
-或在 `~/.hermes/config.yaml` 中添加外部目录：
-
-```yaml
-skills:
-  external_dirs:
-    - ~/myskills/plantuml-skill
-```
-
-### OpenAI Codex
-
-```bash
-# 用户级安装
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.agents/skills/plantuml-skill
-
-# 项目级安装
-git clone https://github.com/Agents365-ai/plantuml-skill.git .agents/skills/plantuml-skill
-```
-
-### SkillsMP
-
-在 [SkillsMP](https://skillsmp.com) 浏览或使用 CLI：
-
-```bash
-skills install plantuml-skill
-```
-
-### 安装路径总结
-
-| 平台 | 全局路径 | 项目路径 |
-|------|----------|----------|
-| Claude Code | `~/.claude/skills/plantuml-skill/` | `.claude/skills/plantuml-skill/` |
-| Opencode | `~/.config/opencode/skills/plantuml-skill/`（同时读取 `~/.claude/skills/`） | `.opencode/skills/plantuml-skill/`（同时读取 `.claude/skills/`） |
-| OpenClaw / ClawHub | `~/.openclaw/skills/plantuml-skill/` | `skills/plantuml-skill/` |
-| Hermes Agent | `~/.hermes/skills/design/plantuml-skill/` | 通过 `external_dirs` 配置 |
-| OpenAI Codex | `~/.agents/skills/plantuml-skill/` | `.agents/skills/plantuml-skill/` |
-| SkillsMP | N/A（通过 CLI 安装） | N/A |
+常用路径：`~/.claude/skills/`（Claude Code）、`~/.config/opencode/skills/`（Opencode）、`~/.openclaw/skills/`（OpenClaw）、`~/.agents/skills/`（Codex）。同时已索引于 [SkillsMP](https://skillsmp.com)。
 
 ## 更新
 

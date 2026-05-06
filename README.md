@@ -12,19 +12,6 @@
 - **C4 diagram support** via Kroki's `c4plantuml` endpoint (the public PlantUML server's `!include` directives are pre-resolved)
 - Triggers automatically when diagrams would help explain APIs, class hierarchies, state machines, or systems with 3+ components
 
-## Multi-Platform Support
-
-Works with all major AI coding agents that support the [Agent Skills](https://agentskills.io) format:
-
-| Platform | Status | Details |
-|----------|--------|---------|
-| **Claude Code** | ✅ Full support | Native SKILL.md format |
-| **Opencode** | ✅ Full support | Native SKILL.md via `skill` tool; also reads `.claude/skills/` paths |
-| **OpenClaw / ClawHub** | ✅ Full support | `metadata.openclaw` namespace with `curl` dependency gating |
-| **Hermes Agent** | ✅ Full support | `metadata.hermes` namespace, tags, tool gating |
-| **OpenAI Codex** | ✅ Full support | Standard SKILL.md is consumed directly |
-| **SkillsMP** | ✅ Indexed | GitHub topics configured |
-
 ## Comparison
 
 ### vs No Skill (native agent)
@@ -114,87 +101,24 @@ java -jar plantuml.jar diagram.puml
 | **Windows** | Use Git Bash or WSL so `curl` is available; install Java + Graphviz for Option C |
 | **Linux** | `curl` ships with most distros; `apt`/`yum`/`pacman` install `graphviz` + `default-jre` |
 
-## Skill Installation
-
-### Claude Code
+## Installation
 
 ```bash
-# Plugin marketplace (recommended)
-/plugin marketplace add Agents365-ai/365-skills
-/plugin install plantuml
+# Any agent (Claude Code, Cursor, Copilot, etc.)
+npx skills add Agents365-ai/365-skills -g
 
-# Manual global install
+# Claude Code only
+> /plugin marketplace add Agents365-ai/365-skills
+> /plugin install plantuml
+```
+
+Manual install — clone into your agent's skills directory:
+
+```bash
 git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.claude/skills/plantuml-skill
-
-# Manual project-level install
-git clone https://github.com/Agents365-ai/plantuml-skill.git .claude/skills/plantuml-skill
 ```
 
-### Opencode
-
-```bash
-# Global install (Opencode-native path)
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.config/opencode/skills/plantuml-skill
-
-# Project-level install
-git clone https://github.com/Agents365-ai/plantuml-skill.git .opencode/skills/plantuml-skill
-```
-
-Opencode also reads `~/.claude/skills/` and `.claude/skills/`, so an existing Claude Code install is automatically picked up — no second clone needed.
-
-### OpenClaw
-
-```bash
-# Manual install
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.openclaw/skills/plantuml-skill
-
-# Project-level install
-git clone https://github.com/Agents365-ai/plantuml-skill.git skills/plantuml-skill
-```
-
-### Hermes Agent
-
-```bash
-# Install under design category
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.hermes/skills/design/plantuml-skill
-```
-
-Or add an external directory in `~/.hermes/config.yaml`:
-
-```yaml
-skills:
-  external_dirs:
-    - ~/myskills/plantuml-skill
-```
-
-### OpenAI Codex
-
-```bash
-# User-level install
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.agents/skills/plantuml-skill
-
-# Project-level install
-git clone https://github.com/Agents365-ai/plantuml-skill.git .agents/skills/plantuml-skill
-```
-
-### SkillsMP
-
-Browse on [SkillsMP](https://skillsmp.com) or use the CLI:
-
-```bash
-skills install plantuml-skill
-```
-
-### Installation paths summary
-
-| Platform | Global path | Project path |
-|----------|-------------|--------------|
-| Claude Code | `~/.claude/skills/plantuml-skill/` | `.claude/skills/plantuml-skill/` |
-| Opencode | `~/.config/opencode/skills/plantuml-skill/` (also reads `~/.claude/skills/`) | `.opencode/skills/plantuml-skill/` (also reads `.claude/skills/`) |
-| OpenClaw / ClawHub | `~/.openclaw/skills/plantuml-skill/` | `skills/plantuml-skill/` |
-| Hermes Agent | `~/.hermes/skills/design/plantuml-skill/` | Via `external_dirs` config |
-| OpenAI Codex | `~/.agents/skills/plantuml-skill/` | `.agents/skills/plantuml-skill/` |
-| SkillsMP | N/A (installed via CLI) | N/A |
+Common paths: `~/.claude/skills/` (Claude Code), `~/.config/opencode/skills/` (Opencode), `~/.openclaw/skills/` (OpenClaw), `~/.agents/skills/` (Codex). Also indexed on [SkillsMP](https://skillsmp.com).
 
 ## Updates
 
