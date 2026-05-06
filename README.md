@@ -119,10 +119,14 @@ java -jar plantuml.jar diagram.puml
 ### Claude Code
 
 ```bash
-# Global install (available in all projects)
+# Plugin marketplace (recommended)
+/plugin marketplace add Agents365-ai/365-skills
+/plugin install plantuml
+
+# Manual global install
 git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.claude/skills/plantuml-skill
 
-# Project-level install
+# Manual project-level install
 git clone https://github.com/Agents365-ai/plantuml-skill.git .claude/skills/plantuml-skill
 ```
 
