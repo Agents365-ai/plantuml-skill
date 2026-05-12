@@ -1,6 +1,6 @@
 # plantuml-skill — From Text to Professional UML Diagrams
 
-[中文文档](README_CN.md)
+[中文文档](README_CN.md) | [Online Docs](https://agents365-ai.github.io/plantuml-skill/)
 
 A skill that turns natural-language descriptions into `.puml` PlantUML source and exports diagrams to PNG / SVG via the Kroki rendering API — no Java, no Graphviz, no local install (just `curl`). Local Kroki Docker and `plantuml.jar` fallbacks are available for offline / air-gapped use.
 

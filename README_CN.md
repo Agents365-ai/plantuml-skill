@@ -1,6 +1,6 @@
 # plantuml-skill — 文本到专业 UML 图表
 
-[English](README.md)
+[English](README.md) | [在线文档](https://agents365-ai.github.io/plantuml-skill/zh.html)
 
 一个把自然语言描述变成 `.puml` PlantUML 源文件,并通过 Kroki 渲染 API 导出为 PNG / SVG 的技能 —— 无需 Java、无需 Graphviz、无需本地安装(只要 `curl`)。离线 / 气隙场景可使用本地 Kroki Docker 或 `plantuml.jar`。
 
