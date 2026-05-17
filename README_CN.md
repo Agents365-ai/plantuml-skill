@@ -1,61 +1,150 @@
-# plantuml-skill — 文本到专业 UML 图表
+# plantuml-skill —— 从文字到专业 UML 图表
 
-[English](README.md) | [在线文档](https://agents365-ai.github.io/plantuml-skill/zh.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Agents365-ai/plantuml-skill?style=flat&logo=github)](https://github.com/Agents365-ai/plantuml-skill/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Agents365-ai/plantuml-skill?style=flat&logo=github)](https://github.com/Agents365-ai/plantuml-skill/network/members)
+[![Latest Release](https://img.shields.io/github/v/release/Agents365-ai/plantuml-skill?logo=github)](https://github.com/Agents365-ai/plantuml-skill/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/Agents365-ai/plantuml-skill?logo=github)](https://github.com/Agents365-ai/plantuml-skill/commits/main)
 
-一个把自然语言描述变成 `.puml` PlantUML 源文件,并通过 Kroki 渲染 API 导出为 PNG / SVG 的技能 —— 无需 Java、无需 Graphviz、无需本地安装(只要 `curl`)。离线 / 气隙场景可使用本地 Kroki Docker 或 `plantuml.jar`。
+[![SkillsMP](https://img.shields.io/badge/SkillsMP-listed-1f6feb)](https://skillsmp.com/skills/agents365-ai-plantuml-skill-skills-plantuml-skill-skill-md)
+[![ClawHub](https://img.shields.io/badge/ClawHub-listed-ff6b35)](https://clawhub.ai/agents365-ai/plantuml-pro-skill)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-8a2be2)](https://github.com/Agents365-ai/365-skills)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-兼容-2ea44f)](https://agentskills.io)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/79JF5Atuk)
 
-支持 Claude Code、Cursor、Copilot、OpenClaw、Codex、Hermes 等任何兼容 [Agent Skills](https://agentskills.io) 规范的 agent。
+[English](README.md) · **中文** · [📖 在线文档](https://agents365-ai.github.io/plantuml-skill/zh.html)
 
-支持 10+ 种图表类型 —— 时序图、组件图、类图、ER 图、活动图、用例图、状态图、C4、思维导图、Gantt —— 各自附带地道语法模板、主题(`plain` / `cerulean` / `blueprint` / `aws-orange` / `vibrant`),以及精选"常见错误"指南。
+一个把自然语言描述变成 `.puml` PlantUML 源文件,并通过 [Kroki](https://kroki.io) 渲染 API 导出为 PNG / SVG 的技能 —— 无需 Java、无需 Graphviz、无需本地安装(只要 `curl`)。离线 / 气隙场景可使用本地 Kroki Docker 或 `plantuml.jar`。支持 **Claude Code、Cursor、Copilot、OpenClaw、Codex、Hermes** 等任何兼容 [Agent Skills](https://agentskills.io) 规范的 agent。
 
-## 文档导航
+<p align="center">
+  <img src="assets/example.png" width="900" alt="微服务架构图 —— 用自然语言提示词经 PlantUML + Kroki 渲染">
+</p>
 
-| 文档 | 内容 |
-|---|---|
-| [docs/features_CN.md](docs/features_CN.md) | 与原生 / 其他 PlantUML 方案的对比、核心优势、支持的图表类型 |
-| [docs/setup_CN.md](docs/setup_CN.md) | 三种渲染后端(Kroki API / 本地 Docker / jar)与已知限制 |
-| [skills/plantuml-skill/SKILL.md](skills/plantuml-skill/SKILL.md) | agent 加载的工作流指南 |
+## ✨ 核心亮点
 
-## 快速开始
+- **10+ 种图表类型** —— 时序图、组件图、类图、ER 图、活动图、用例图、状态图、C4、思维导图、Gantt,每种都带地道语法模板与形状词汇
+- **零安装默认值** —— 公共 Kroki API 只需要 `curl`,无需 Node、Java、Graphviz
+- **3 种渲染后端** —— 公共 Kroki、本地 Kroki Docker(离线)、`plantuml.jar` + Java + Graphviz(气隙)
+- **5 套内置主题** —— `plain`、`cerulean`、`blueprint`、`aws-orange`、`vibrant`,加完整的 `skinparam` 覆盖
+- **C4 真的能用** —— 通过 Kroki 的 `c4plantuml` 端点绕开公共 PlantUML 服务器的 `!include` 404 陷阱
+- **常见错误指南** —— 精选 9 行表格:箭头方向、布局溢出、标签转义、参与者顺序、C4 include 陷阱等
 
-安装技能:
+## 🖼️ 示例
+
+> [!TIP]
+> **页首那张图就是用下面这条提示词生成的:**
+
+```
+画一个微服务电商架构图,包含 Mobile/Web/Admin 客户端、API Gateway、
+User/Order/Product/Payment 微服务、Kafka 事件总线、Notification 服务,
+以及 User DB / Order DB / Product DB / Redis Cache / Stripe API
+```
+
+源 `.puml` 与渲染后的 PNG 都在 [`assets/`](assets/) 里 —— 技能一次产出。
+
+## 🚀 安装
+
+### 1. 选择渲染后端
+
+| 方式 | 安装 | 适用 |
+|---|---|---|
+| **Kroki API**(默认) | `curl`(全平台预装) | 在线 —— 零配置 |
+| **本地 Kroki** | `docker run -d -p 8000:8000 yuzutech/kroki` | 离线 / 隐私 / 高负载 |
+| **`plantuml.jar`** | `brew install graphviz openjdk` + [下载 jar](https://plantuml.com/download) | 完全气隙环境 |
+
+完整方案见 [docs/setup_CN.md](docs/setup_CN.md)。
+
+### 2. 安装技能
 
 ```bash
 # 任意 Agent(Claude Code、Cursor、Copilot 等)
 npx skills add Agents365-ai/365-skills -g
+```
 
-# 仅 Claude Code
+```text
+# Claude Code 插件市场
 > /plugin marketplace add Agents365-ai/365-skills
 > /plugin install plantuml
 ```
 
-手动安装 —— 克隆到你的 agent skills 目录:
-
 ```bash
-git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.claude/skills/plantuml-skill
+# 手动安装
+git clone https://github.com/Agents365-ai/plantuml-skill.git \
+  ~/.claude/skills/plantuml-skill
 ```
 
-常用路径:`~/.claude/skills/`(Claude Code)、`~/.config/opencode/skills/`(Opencode)、`~/.openclaw/skills/`(OpenClaw)、`~/.agents/skills/`(Codex)。同时已索引于 [SkillsMP](https://skillsmp.com)。
+常用路径:`~/.claude/skills/`(Claude Code)、`~/.config/opencode/skills/`(Opencode)、`~/.openclaw/skills/`(OpenClaw)、`~/.agents/skills/`(Codex)。同时索引于 [SkillsMP](https://skillsmp.com/skills/agents365-ai-plantuml-skill-skills-plantuml-skill-skill-md) 与 [ClawHub](https://clawhub.ai/agents365-ai/plantuml-pro-skill)。
 
-默认通过公共 Kroki API 渲染,只需要 `curl`。离线 / 气隙场景请参考 [docs/setup_CN.md](docs/setup_CN.md)。
+**更新:** `/plugin update plantuml`(Claude Code)、`skills update plantuml-skill`(SkillsMP)、`clawhub update plantuml-pro-skill`(OpenClaw),或 `git pull`(手动安装)。
 
-## 使用方式
+## ⚡ 快速开始
 
-直接描述你想要的图表:
+装好之后直接描述你想要的图表:
 
 ```
-画一个 OAuth 2.0 授权码流程的时序图,包含 Client、Authorization Server、Resource Server 和 User
+画一个 OAuth 2.0 授权码流程的时序图,包含 Client、Authorization Server、
+Resource Server 和 User。展示跳转、token 交换、资源访问等步骤,
+带上正确的激活框。
 ```
 
-智能体会自动生成 `.puml` 文件并通过 Kroki 导出为 PNG。
+Skill 会自动挑选合适的图表类型,生成 `.puml` 源文件,并通过 Kroki 导出为 PNG/SVG。
 
-## 示例
+## 🧩 支持的图表类型
 
-**提示词:** *画一个微服务电商架构图,包含 Mobile/Web/Admin 客户端,API Gateway,User/Order/Product/Payment 微服务,Kafka 事件总线,Notification 服务,User DB / Order DB / Product DB / Redis Cache / Stripe API*
+| 类别 | 示例 | 特色 |
+|---|---|---|
+| 时序图 | API 调用、OAuth 流程、协议追踪 | 生命线、激活框、异步箭头 |
+| 组件 / 架构 | 服务、模块、队列、数据库、云组件 | `package`/`rectangle` 分组、形状词汇 |
+| 类图 | OOP 模型、数据结构 | 继承、组合、聚合、多重性(`"1" --> "*"`) |
+| ER / 实体 | 数据库 Schema | `<<PK>>` / `<<FK>>` 标记、鱼尾纹关系 |
+| 活动 / 流程图 | 工作流、业务流程 | `if/then/else/endif` 分支判断 |
+| 用例图 | 系统需求、用户故事 | 角色、系统边界 |
+| 状态图 | 状态机、生命周期 | `[*] -->` 起止标记 |
+| C4 | Context、Container、Component | 通过 Kroki `c4plantuml` 端点(includes 不会 404) |
+| 其他 | 思维导图、Gantt | `@startmindmap`、`@startgantt` |
 
-![微服务架构图](assets/example.png)
+## 🔄 工作流程
 
-## 支持作者
+幕后流程:**检查 `curl`** → **挑选图表类型** → **生成 `.puml` 源**(`@startuml`/`@enduml`)→ **POST 到 Kroki**(`https://kroki.io/plantuml/png` 或 `…/svg`)→ **保存输出 + 上报路径**。把端点改成 `http://localhost:8000` 即用本地 Kroki 容器;`java -jar plantuml.jar` 则用于气隙渲染。
+
+## 🆚 对比
+
+### 对比原生智能体(无 skill)
+
+| 功能 | 原生智能体 | plantuml-skill |
+|---|---|---|
+| 生成 PlantUML 源码 | ✅(LLM 懂语法) | ✅ |
+| 导出 PNG/SVG | ❌ 只能输出文本 | ✅ 一次 `curl` POST 到 Kroki |
+| 渲染后端可选 | 无 | ✅ 公共 Kroki / 本地 Kroki / `plantuml.jar` |
+| 图表类型清单 | 隐式 | ✅ 10+ 种带形状与箭头词汇 |
+| 主题默认值 | 每次随机 | ✅ 5 套命名主题 + `skinparam` 覆盖 |
+| 云端 C4 | ❌ 常因 `!include` 404 失败 | ✅ 使用 Kroki `c4plantuml` 端点 |
+| 常见错误防护 | ❌ | ✅ 9 行精选错误表 |
+| 离线 / 气隙 | ❌ | ✅ 本地 Kroki Docker 或本地 jar |
+
+完整对比 + 核心优势见 [docs/features_CN.md](docs/features_CN.md)。
+
+## 🔗 相关 Skill
+
+[Agents365-ai 图表 skill 家族](https://github.com/Agents365-ai) 一员 —— 按场景挑工具:
+
+| Skill | 风格 | 适用场景 |
+|---|---|---|
+| [drawio-skill](https://github.com/Agents365-ai/drawio-skill) | 专业 / 矢量 | 架构图、ML/DL、ER 图,带自检循环 |
+| [excalidraw-skill](https://github.com/Agents365-ai/excalidraw-skill) | 手绘 / 草图 | 白板原型、非正式图 |
+| [mermaid-skill](https://github.com/Agents365-ai/mermaid-skill) | 文本驱动、自动布局 | 可嵌入 README、易于版本管理 |
+| [tldraw-skill](https://github.com/Agents365-ai/tldraw-skill) | 白板协作 | 随手画、FigJam 风格 |
+
+## 💬 社区
+
+- **Discord:** https://discord.gg/79JF5Atuk
+- **微信:** 扫描下方二维码
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/agents365ai_wechat_1.png" width="200" alt="微信交流群">
+</p>
+
+## ❤️ 支持作者
 
 如果这个 skill 对你有帮助,欢迎支持作者:
 
@@ -84,13 +173,13 @@ git clone https://github.com/Agents365-ai/plantuml-skill.git ~/.claude/skills/pl
   </tr>
 </table>
 
-## 作者
+## 👤 作者
 
 **Agents365-ai**
 
-- Bilibili: https://space.bilibili.com/441831884
 - GitHub: https://github.com/Agents365-ai
+- Bilibili: https://space.bilibili.com/441831884
 
-## License
+## 📄 许可证
 
-MIT
+[MIT](LICENSE)
