@@ -24,7 +24,7 @@
 
 - **10+ 种图表类型** —— 时序图、组件图、类图、ER 图、活动图、用例图、状态图、C4、思维导图、Gantt,每种都带地道语法模板与形状词汇
 - **零安装默认值** —— 公共 Kroki API 只需要 `curl`,无需 Node、Java、Graphviz
-- **3 种渲染后端** —— 公共 Kroki、本地 Kroki Docker(离线)、`plantuml.jar` + Java + Graphviz(气隙)
+- **3 种渲染后端** —— 公共 Kroki、本地 Kroki Docker(离线)、`plantuml.jar` + Java + Graphviz(气隙);按内容敏感度自动选择,绝不静默降级,并会告知你源码是否离开了本机
 - **5 套内置主题** —— `plain`、`cerulean`、`blueprint`、`aws-orange`、`vibrant`,加完整的 `skinparam` 覆盖
 - **C4 真的能用** —— 通过 Kroki 的 `c4plantuml` 端点绕开公共 PlantUML 服务器的 `!include` 404 陷阱
 - **常见错误指南** —— 精选 9 行表格:箭头方向、布局溢出、标签转义、参与者顺序、C4 include 陷阱等
