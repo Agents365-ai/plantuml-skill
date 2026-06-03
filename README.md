@@ -125,6 +125,18 @@ Behind the scenes: **check `curl`** → **pick diagram type** → **generate `.p
 
 Full comparison + key-advantages summary in [docs/features.md](docs/features.md).
 
+## 🎯 When to use (and when not to)
+
+**Good fit:**
+- Standardized UML — class, sequence, state, component, use-case, activity, deployment, C4
+- Diagrams-as-code with automatic layout; ideal for CI pipelines and docs-as-code
+- When correct, conventional UML notation matters (hollow inheritance arrows, lifelines, etc.)
+
+**Reach for a sibling skill instead when you need:**
+- **General, non-UML quick diagrams embedded in Markdown** → [mermaid-skill](https://github.com/Agents365-ai/mermaid-skill)
+- **Freeform, heavily-styled, or branded diagrams with pixel control** → [drawio-skill](https://github.com/Agents365-ai/drawio-skill)
+- **A hand-drawn / sketchy look** → [excalidraw-skill](https://github.com/Agents365-ai/excalidraw-skill) or [tldraw-skill](https://github.com/Agents365-ai/tldraw-skill)
+
 ## 🔗 Related Skills
 
 Part of the [Agents365-ai diagram-skill family](https://github.com/Agents365-ai) — pick the right tool for the job:

@@ -124,6 +124,18 @@ Skill 会自动挑选合适的图表类型,生成 `.puml` 源文件,并通过 Kr
 
 完整对比 + 核心优势见 [docs/features_CN.md](docs/features_CN.md)。
 
+## 🎯 何时用(以及何时别用)
+
+**适合:**
+- 规范的 UML —— 类图、时序图、状态图、组件图、用例图、活动图、部署图、C4
+- 以代码画图 + 自动布局;非常适合 CI 流水线与 docs-as-code
+- 看重正确、规范的 UML 记法(空心继承箭头、生命线等)
+
+**这些情况请改用同系列的其它 skill:**
+- **通用的、非 UML 的、嵌入 Markdown 的快速图** → [mermaid-skill](https://github.com/Agents365-ai/mermaid-skill)
+- **自由排布、重样式、带品牌图标且要像素级控制的图** → [drawio-skill](https://github.com/Agents365-ai/drawio-skill)
+- **手绘 / 潦草观感** → [excalidraw-skill](https://github.com/Agents365-ai/excalidraw-skill) 或 [tldraw-skill](https://github.com/Agents365-ai/tldraw-skill)
+
 ## 🔗 相关 Skill
 
 [Agents365-ai 图表 skill 家族](https://github.com/Agents365-ai) 一员 —— 按场景挑工具:
