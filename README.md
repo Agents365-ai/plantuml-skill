@@ -44,6 +44,23 @@ Stripe API
 
 Source `.puml` and rendered PNG live in [`assets/`](assets/) — the skill produced both in one shot.
 
+### More examples — different types & themes
+
+Six diagram types, each in a different built-in theme — all rendered via Kroki. Sources + PNGs in [`assets/examples/`](assets/examples/).
+
+<table>
+  <tr>
+    <td align="center"><img src="assets/examples/sequence-oauth.png" width="240" alt="OAuth 2.0 authorization code flow sequence diagram"><br><sub><b>Sequence</b> · <code>plain</code></sub></td>
+    <td align="center"><img src="assets/examples/class-blog.png" width="240" alt="Blog domain class diagram"><br><sub><b>Class</b> · <code>cerulean</code></sub></td>
+    <td align="center"><img src="assets/examples/er-ecommerce.png" width="240" alt="E-commerce database ER diagram"><br><sub><b>ER</b> · <code>aws-orange</code></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/examples/state-order.png" width="240" alt="Order lifecycle state machine"><br><sub><b>State</b> · <code>vibrant</code></sub></td>
+    <td align="center"><img src="assets/examples/activity-cicd.png" width="240" alt="CI/CD pipeline activity diagram"><br><sub><b>Activity</b> · <code>blueprint</code></sub></td>
+    <td align="center"><img src="assets/examples/c4-banking.png" width="240" alt="Internet banking C4 system context diagram"><br><sub><b>C4 Context</b> · <code>&lt;C4/…&gt;</code></sub></td>
+  </tr>
+</table>
+
 ## 🚀 Installation
 
 ### 1. Pick a rendering backend

@@ -43,6 +43,23 @@ User/Order/Product/Payment 微服务、Kafka 事件总线、Notification 服务,
 
 源 `.puml` 与渲染后的 PNG 都在 [`assets/`](assets/) 里 —— 技能一次产出。
 
+### 更多示例 —— 不同类型与主题
+
+六种图类型,各用一种内置主题,全部经 Kroki 渲染。源文件与 PNG 在 [`assets/examples/`](assets/examples/)。
+
+<table>
+  <tr>
+    <td align="center"><img src="assets/examples/sequence-oauth.png" width="240" alt="OAuth 2.0 授权码流程时序图"><br><sub><b>时序图</b> · <code>plain</code></sub></td>
+    <td align="center"><img src="assets/examples/class-blog.png" width="240" alt="博客领域模型类图"><br><sub><b>类图</b> · <code>cerulean</code></sub></td>
+    <td align="center"><img src="assets/examples/er-ecommerce.png" width="240" alt="电商数据库 ER 图"><br><sub><b>ER 图</b> · <code>aws-orange</code></sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/examples/state-order.png" width="240" alt="订单生命周期状态机"><br><sub><b>状态图</b> · <code>vibrant</code></sub></td>
+    <td align="center"><img src="assets/examples/activity-cicd.png" width="240" alt="CI/CD 流水线活动图"><br><sub><b>活动图</b> · <code>blueprint</code></sub></td>
+    <td align="center"><img src="assets/examples/c4-banking.png" width="240" alt="网银系统 C4 上下文图"><br><sub><b>C4 上下文</b> · <code>&lt;C4/…&gt;</code></sub></td>
+  </tr>
+</table>
+
 ## 🚀 安装
 
 ### 1. 选择渲染后端
