@@ -28,6 +28,7 @@
 - **5 套内置主题** —— `plain`、`cerulean`、`blueprint`、`aws-orange`、`vibrant`,加完整的 `skinparam` 覆盖
 - **C4 真的能用** —— 通过 Kroki 的 `c4plantuml` 端点绕开公共 PlantUML 服务器的 `!include` 404 陷阱
 - **常见错误指南** —— 精选 9 行表格:箭头方向、布局溢出、标签转义、参与者顺序、C4 include 陷阱等
+- **视觉自检 + 评审循环** —— 在语法/渲染自纠循环之外,读取导出的 PNG,捕捉自动布局也防不住的可读性缺陷(标签被截断、组件重叠、方向不当),自动修复(≤2 轮),再根据你的反馈迭代(≤5 轮)
 
 ## 🖼️ 示例
 
@@ -105,7 +106,7 @@ Skill 会自动挑选合适的图表类型,生成 `.puml` 源文件,并通过 Kr
 
 ## 🔄 工作流程
 
-幕后流程:**检查 `curl`** → **挑选图表类型** → **生成 `.puml` 源**(`@startuml`/`@enduml`)→ **POST 到 Kroki**(`https://kroki.io/plantuml/png` 或 `…/svg`)→ **保存输出 + 上报路径**。把端点改成 `http://localhost:8000` 即用本地 Kroki 容器;`java -jar plantuml.jar` 则用于气隙渲染。
+幕后流程:**检查 `curl`** → **挑选图表类型** → **生成 `.puml` 源**(`@startuml`/`@enduml`)→ **POST 到 Kroki**(`https://kroki.io/plantuml/png` 或 `…/svg`)→ **校验并自纠渲染(修语法,≤3 轮)** → **视觉自检可读性并自动修复(≤2 轮)** → **根据你的反馈评审循环(≤5 轮)** → **保存输出 + 上报路径**。把端点改成 `http://localhost:8000` 即用本地 Kroki 容器;`java -jar plantuml.jar` 则用于气隙渲染。
 
 ## 🆚 对比
 
@@ -115,6 +116,8 @@ Skill 会自动挑选合适的图表类型,生成 `.puml` 源文件,并通过 Kr
 |---|---|---|
 | 生成 PlantUML 源码 | ✅(LLM 懂语法) | ✅ |
 | 导出 PNG/SVG | ❌ 只能输出文本 | ✅ 一次 `curl` POST 到 Kroki |
+| 渲染出错自纠 | ❌ 直接交付坏图 | ✅ 查 HTTP/字节、修语法、重试(≤3 轮) |
+| 视觉自检 + 评审循环 | ❌ 从不看渲染结果 | ✅ 读 PNG、自动修可读性(≤2),再按反馈迭代(≤5) |
 | 渲染后端可选 | 无 | ✅ 公共 Kroki / 本地 Kroki / `plantuml.jar` |
 | 图表类型清单 | 隐式 | ✅ 10+ 种带形状与箭头词汇 |
 | 主题默认值 | 每次随机 | ✅ 5 套命名主题 + `skinparam` 覆盖 |

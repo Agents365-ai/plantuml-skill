@@ -28,6 +28,7 @@ A skill that turns natural-language descriptions into `.puml` PlantUML source an
 - **5 built-in themes** — `plain`, `cerulean`, `blueprint`, `aws-orange`, `vibrant` — plus full `skinparam` overrides
 - **C4 that actually works** — uses Kroki's `c4plantuml` endpoint to sidestep the public PlantUML server's `!include` 404 trap
 - **Common Mistakes guide** — 9-row curated table covering arrow direction, layout overflow, label escaping, participant ordering, and the C4 include pitfall
+- **Vision self-check + review loop** — beyond the syntax/render self-correct loop, reads the exported PNG to catch readability defects auto-layout can't prevent (clipped labels, component overlap, wrong orientation), auto-fixes (≤2 rounds), then iterates with you (≤5 rounds)
 
 ## 🖼️ Examples
 
@@ -106,7 +107,7 @@ The skill picks the right diagram type, generates the `.puml` source, and export
 
 ## 🔄 How it works
 
-Behind the scenes: **check `curl`** → **pick diagram type** → **generate `.puml` source** with `@startuml`/`@enduml` markers → **POST to Kroki** (`https://kroki.io/plantuml/png` or `…/svg`) → **save output + report paths to the user**. Swap the endpoint for `http://localhost:8000` to use a local Kroki container, or run `java -jar plantuml.jar` for air-gapped renders.
+Behind the scenes: **check `curl`** → **pick diagram type** → **generate `.puml` source** with `@startuml`/`@enduml` markers → **POST to Kroki** (`https://kroki.io/plantuml/png` or `…/svg`) → **validate & self-correct the render (fix syntax, ≤3 rounds)** → **vision self-check readability and auto-fix (≤2 rounds)** → **review loop on your feedback (≤5 rounds)** → **save output + report paths**. Swap the endpoint for `http://localhost:8000` to use a local Kroki container, or run `java -jar plantuml.jar` for air-gapped renders.
 
 ## 🆚 Comparison
 
@@ -116,6 +117,8 @@ Behind the scenes: **check `curl`** → **pick diagram type** → **generate `.p
 |---|---|---|
 | Generate PlantUML source | ✅ (LLMs know the syntax) | ✅ |
 | Export to PNG/SVG | ❌ outputs text only | ✅ one `curl` POST to Kroki |
+| Self-correct on render error | ❌ ships broken output | ✅ checks HTTP/bytes, fixes syntax, retries (≤3 rounds) |
+| Vision self-check + review loop | ❌ never looks at the render | ✅ reads the PNG, auto-fixes readability (≤2), then iterates on feedback (≤5) |
 | Renderer choice | none | ✅ public Kroki / local Kroki / `plantuml.jar` |
 | Diagram-type catalog | implicit | ✅ 10+ types with shape & arrow vocabulary |
 | Theme defaults | random per run | ✅ 5 named themes + `skinparam` overrides |
