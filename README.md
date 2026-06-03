@@ -24,7 +24,7 @@ A skill that turns natural-language descriptions into `.puml` PlantUML source an
 
 - **10+ diagram types** — sequence, component, class, ER, activity, use case, state, C4, mind map, gantt — each with idiomatic syntax templates and shape vocabulary
 - **Zero-install default** — public Kroki API needs only `curl`; no Node, no Java, no Graphviz
-- **3 rendering backends** — public Kroki, local Kroki via Docker (offline), or `plantuml.jar` + Java + Graphviz (air-gapped)
+- **3 rendering backends** — public Kroki, local Kroki via Docker (offline), or `plantuml.jar` + Java + Graphviz (air-gapped) — picks by sensitivity, never silently downgrades, and reports whether your source left the machine
 - **5 built-in themes** — `plain`, `cerulean`, `blueprint`, `aws-orange`, `vibrant` — plus full `skinparam` overrides
 - **C4 that actually works** — uses Kroki's `c4plantuml` endpoint to sidestep the public PlantUML server's `!include` 404 trap
 - **Common Mistakes guide** — 9-row curated table covering arrow direction, layout overflow, label escaping, participant ordering, and the C4 include pitfall
