@@ -19,6 +19,15 @@ Generate `.puml` PlantUML diagram files and export to PNG/SVG using **Kroki** �
 **Output:** PNG, SVG
 **Diagram types:** sequence, component, class, ER, activity, use case, state, C4, and more
 
+## When to use / when NOT to use
+
+**Use this skill for:** standardized UML (class, sequence, state, component, use-case, activity, deployment, C4) as diagrams-as-code with automatic layout and correct UML notation.
+
+**Do NOT use it — route elsewhere — for:**
+- General, non-UML quick diagrams embedded in Markdown → **mermaid**.
+- Freeform, heavily-styled, or branded diagrams needing pixel control → **drawio**.
+- A hand-drawn / sketchy look → **excalidraw** or **tldraw**.
+
 ## When to Use
 
 **Explicit triggers:**
