@@ -29,6 +29,7 @@ A skill that turns natural-language descriptions into `.puml` PlantUML source an
 - **C4 that actually works** — uses Kroki's `c4plantuml` endpoint to sidestep the public PlantUML server's `!include` 404 trap
 - **Common Mistakes guide** — 9-row curated table covering arrow direction, layout overflow, label escaping, participant ordering, and the C4 include pitfall
 - **Vision self-check + review loop** — beyond the syntax/render self-correct loop, reads the exported PNG to catch readability defects auto-layout can't prevent (clipped labels, component overlap, wrong orientation), auto-fixes (≤2 rounds), then iterates with you (≤5 rounds)
+- **Beyond text → diagram** — also generates diagrams from existing **source code** (class/sequence/component/ER), and **renders PlantUML embedded in Markdown** to images, rewriting the doc with image links (Confluence / Notion-ready)
 
 ## 🖼️ Examples
 
